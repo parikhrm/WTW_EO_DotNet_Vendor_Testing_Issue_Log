@@ -7,6 +7,7 @@ using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -596,7 +597,7 @@ namespace Vendor_Testing_Issue_Log
                 if (string.IsNullOrEmpty(searchby_requestid.Text) && string.IsNullOrEmpty(searchby_entityname.Text) && string.IsNullOrEmpty(searchby_associatename.Text))
                 {
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "select top 100 RequestID,Vendor,Platform,Entity_Individual_Name,WFT_Batch_RequestID,Issue_Raised_Date,Chaser_Date,Chaser_Sent,Issue_Resolved_Date,Associate_Name,Ops_Comments,Moodys_DNB_Comments,Risk_Catetory,Priority_Level,LastUpdatedBy from dbo.tbl_vendor_testing_issuelog_dotnet with(nolock) where IsDeleted = 0";
+                    cmd.CommandText = "select top 100 RequestID,Vendor,Platform,Entity_Individual_Name,WFT_Batch_RequestID,Issue_Raised_Date,Chaser_Date,case when Chaser_Sent = 0 then null else Chaser_Sent end as Chaser_Sent ,Issue_Resolved_Date,Associate_Name,Ops_Comments,Moodys_DNB_Comments,Risk_Catetory,Priority_Level,LastUpdatedBy from dbo.tbl_vendor_testing_issuelog_dotnet with(nolock) where IsDeleted = 0";
                     cmd.Parameters.AddWithValue("@lastupdatedby", Environment.UserName.ToString());
                 }
                 else
@@ -701,6 +702,14 @@ namespace Vendor_Testing_Issue_Log
                     {
                         chaser_date.Text = row.Cells["txt_Chaser_Date"].Value.ToString();
                         chaser_date.CustomFormat = "dd-MMMM-yyyy";
+                    }
+                    if (string.IsNullOrEmpty(row.Cells["txt_ChaserSent"].Value.ToString()))
+                    {
+                        checkBox1.Checked = false;
+                    }
+                    else
+                    {
+                        checkBox1.Checked = true;
                     }
                     if (string.IsNullOrEmpty(row.Cells["txt_Issue_Resolved_Date"].Value.ToString()))
                     {
