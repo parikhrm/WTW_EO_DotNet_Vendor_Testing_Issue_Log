@@ -791,5 +791,17 @@ namespace Vendor_Testing_Issue_Log
         {
             reset_overall();
         }
+
+        private void raw_data_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("http://a20-cb-dbse01p/Reports/report/DRD%20MI%20Mumbai/DRD%20Reports/rpt_SSRS_Vendor_Testing_IssueLog_DotNet");
+            }
+            catch (Exception ab)
+            {
+                MessageBox.Show("Unable to open link that was clicked. Following are the error generated details" + ab.ToString());
+            }
+        }
     }
 }

@@ -82,6 +82,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
+            this.raw_data = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -621,12 +622,23 @@
             this.label16.TabIndex = 7;
             this.label16.Text = "Searchby Associate Name";
             // 
+            // raw_data
+            // 
+            this.raw_data.Location = new System.Drawing.Point(34, 427);
+            this.raw_data.Name = "raw_data";
+            this.raw_data.Size = new System.Drawing.Size(158, 45);
+            this.raw_data.TabIndex = 8;
+            this.raw_data.Text = "Raw Data";
+            this.raw_data.UseVisualStyleBackColor = true;
+            this.raw_data.Click += new System.EventHandler(this.raw_data_Click);
+            // 
             // Issue_Log
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1873, 1050);
+            this.Controls.Add(this.raw_data);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label14);
@@ -703,5 +715,6 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Button raw_data;
     }
 }
