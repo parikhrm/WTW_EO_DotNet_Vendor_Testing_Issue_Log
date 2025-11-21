@@ -1,0 +1,11 @@
+C:\Users\parikhrm\OneDrive - Willis Towers Watson\Azure - EO - Projects\Dot Net Projects\VS_2022\Vendor Testing Issue Log\Vendor_Testing_Issue_Log\bin\Debug\Vendor_Testing_Issue_Log.exe.config
+C:\Users\parikhrm\OneDrive - Willis Towers Watson\Azure - EO - Projects\Dot Net Projects\VS_2022\Vendor Testing Issue Log\Vendor_Testing_Issue_Log\bin\Debug\Vendor_Testing_Issue_Log.exe
+C:\Users\parikhrm\OneDrive - Willis Towers Watson\Azure - EO - Projects\Dot Net Projects\VS_2022\Vendor Testing Issue Log\Vendor_Testing_Issue_Log\bin\Debug\Vendor_Testing_Issue_Log.pdb
+C:\Users\parikhrm\OneDrive - Willis Towers Watson\Azure - EO - Projects\Dot Net Projects\VS_2022\Vendor Testing Issue Log\Vendor_Testing_Issue_Log\obj\Debug\Vendor_Testing_Issue_Log.csproj.AssemblyReference.cache
+C:\Users\parikhrm\OneDrive - Willis Towers Watson\Azure - EO - Projects\Dot Net Projects\VS_2022\Vendor Testing Issue Log\Vendor_Testing_Issue_Log\obj\Debug\Vendor_Testing_Issue_Log.Issue_Log.resources
+C:\Users\parikhrm\OneDrive - Willis Towers Watson\Azure - EO - Projects\Dot Net Projects\VS_2022\Vendor Testing Issue Log\Vendor_Testing_Issue_Log\obj\Debug\Vendor_Testing_Issue_Log.Properties.Resources.resources
+C:\Users\parikhrm\OneDrive - Willis Towers Watson\Azure - EO - Projects\Dot Net Projects\VS_2022\Vendor Testing Issue Log\Vendor_Testing_Issue_Log\obj\Debug\Vendor_Testing_Issue_Log.csproj.GenerateResource.cache
+C:\Users\parikhrm\OneDrive - Willis Towers Watson\Azure - EO - Projects\Dot Net Projects\VS_2022\Vendor Testing Issue Log\Vendor_Testing_Issue_Log\obj\Debug\Vendor_Testing_Issue_Log.csproj.CoreCompileInputs.cache
+C:\Users\parikhrm\OneDrive - Willis Towers Watson\Azure - EO - Projects\Dot Net Projects\VS_2022\Vendor Testing Issue Log\Vendor_Testing_Issue_Log\obj\Debug\Vendor_Testing_Issue_Log.exe
+C:\Users\parikhrm\OneDrive - Willis Towers Watson\Azure - EO - Projects\Dot Net Projects\VS_2022\Vendor Testing Issue Log\Vendor_Testing_Issue_Log\obj\Debug\Vendor_Testing_Issue_Log.pdb
+C:\Users\parikhrm\OneDrive - Willis Towers Watson\Azure - EO - Projects\Dot Net Projects\VS_2022\Vendor Testing Issue Log\Vendor_Testing_Issue_Log\obj\Debug\Vendor_Testing_Issue_Log.exe.config
