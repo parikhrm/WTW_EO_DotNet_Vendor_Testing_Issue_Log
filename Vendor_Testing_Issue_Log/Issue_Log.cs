@@ -60,6 +60,7 @@ namespace Vendor_Testing_Issue_Log
             priority_level.SelectedIndex = -1;
             insert.Enabled = true;
             update.Enabled = false;
+            chaser_date.Enabled = false;
             datagridview_display_overall();
         }
 
@@ -219,194 +220,6 @@ namespace Vendor_Testing_Issue_Log
                 cmd.CommandText = "dbo.usp_vendor_testing_issuelog_insert_dotnet";
                 cmd.Parameters.Add("@Message", SqlDbType.NVarChar, 1000);
                 cmd.Parameters["@Message"].Direction = ParameterDirection.Output;
-                if(string.IsNullOrEmpty(vendor.Text))
-                {
-                    cmd.Parameters.AddWithValue("@Vendor", DBNull.Value);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@Vendor", vendor.Text);
-                }
-                if(string.IsNullOrEmpty(platform.Text))
-                {
-                    cmd.Parameters.AddWithValue("@Platform", DBNull.Value);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@Platform", platform.Text);
-                }
-                if (string.IsNullOrEmpty(entity_individual_name.Text))
-                {
-                    cmd.Parameters.AddWithValue("@Entity_Individual_Name", DBNull.Value);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@Entity_Individual_Name", entity_individual_name.Text);
-                }
-                if(string.IsNullOrEmpty(wft_batch_requestid.Text))
-                {
-                    cmd.Parameters.AddWithValue("@WFT_Batch_RequestID", DBNull.Value);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@WFT_Batch_RequestID", wft_batch_requestid.Text);
-                }
-                if (issue_raised_date.Text.Trim() == string.Empty)
-                {
-                    cmd.Parameters.AddWithValue("@Issue_Raised_Date", DBNull.Value);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@Issue_Raised_Date", issue_raised_date.Value.Date);
-                }
-                if (chaser_date.Text.Trim() == string.Empty)
-                {
-                    cmd.Parameters.AddWithValue("@Chaser_Date", DBNull.Value);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@Chaser_Date", chaser_date.Value.Date);
-                }
-                if(checkBox1.Checked == true)
-                {
-                    cmd.Parameters.AddWithValue("@Chaser_Sent",1);
-                }
-                else 
-                {
-                    cmd.Parameters.AddWithValue("@Chaser_Sent", 0);
-                }
-                if (issue_resolved_date.Text.Trim() == string.Empty)
-                {
-                    cmd.Parameters.AddWithValue("@Issue_Resolved_Date", DBNull.Value);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@Issue_Resolved_Date", issue_resolved_date.Value.Date);
-                }
-                if (string.IsNullOrEmpty(associate_name.Text))
-                {
-                    cmd.Parameters.AddWithValue("@Associate_Name", DBNull.Value);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@Associate_Name", associate_name.Text);
-                }
-                if (string.IsNullOrEmpty(ops_comments.Text))
-                {
-                    cmd.Parameters.AddWithValue("@Ops_Comments", DBNull.Value);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@Ops_Comments", ops_comments.Text);
-                }
-                if (string.IsNullOrEmpty(moodys_dnb_comments.Text))
-                {
-                    cmd.Parameters.AddWithValue("@Moodys_DNB_Comments", DBNull.Value);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@Moodys_DNB_Comments", moodys_dnb_comments.Text);
-                }
-                if (string.IsNullOrEmpty(risk_category.Text))
-                {
-                    cmd.Parameters.AddWithValue("@Risk_Catetory", DBNull.Value);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@Risk_Catetory", risk_category.Text);
-                }
-                if (string.IsNullOrEmpty(priority_level.Text))
-                {
-                    cmd.Parameters.AddWithValue("@Priority_Level", DBNull.Value);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@Priority_Level", priority_level.Text);
-                }
-                cmd.Parameters.AddWithValue("@LastUpdatedBy",Environment.UserName.ToString());
-                cmd.Parameters.AddWithValue("@MachineName",Environment.MachineName.ToString());
-
-                
-                //if conditions
-                if(issue_resolved_date.Text.Trim() != string.Empty && string.IsNullOrEmpty(moodys_dnb_comments.Text))
-                {
-                    MessageBox.Show("Please update Moodys DNB Comments");
-                }
-                else if(vendor.Text == "Moodys" && string.IsNullOrEmpty(platform.Text))
-                {
-                    MessageBox.Show("Please update Platform");
-                }
-                else if(issue_raised_date.Text.Trim() == string.Empty)
-                {
-                    MessageBox.Show("Please update Issue Raised Date");
-                }
-                else if (string.IsNullOrEmpty(vendor.Text))
-                {
-                    MessageBox.Show("Please update Vendor");
-                }
-                else if (string.IsNullOrEmpty(platform.Text))
-                {
-                    MessageBox.Show("Please update Platform");
-                }
-                else if (string.IsNullOrEmpty(associate_name.Text))
-                {
-                    MessageBox.Show("Please update Associate Name");
-                }
-                else if (string.IsNullOrEmpty(ops_comments.Text))
-                {
-                    MessageBox.Show("Please update Ops Comments");
-                }
-                else if (string.IsNullOrEmpty(risk_category.Text))
-                {
-                    MessageBox.Show("Please update Risk Category");
-                }
-                else if (string.IsNullOrEmpty(priority_level.Text))
-                {
-                    MessageBox.Show("Please update Priority Level");
-                }
-                else if(issue_raised_date.Text.Trim() != string.Empty && issue_raised_date.Value.Date > current_datetime.Value.Date)
-                {
-                    MessageBox.Show("Issue Raised Date cannot be more than Today's date");
-                }
-                else if (issue_resolved_date.Text.Trim() != string.Empty && issue_raised_date.Value.Date > current_datetime.Value.Date)
-                {
-                    MessageBox.Show("Issue Resolved Date cannot be more than Today's date");
-                }
-                else
-                {
-
-                    conn.Open();
-                    cmd.Connection = conn;
-                    cmd.ExecuteNonQuery();
-                    string uploadmessage = cmd.Parameters["@Message"].Value.ToString();
-                    MessageBox.Show("" + uploadmessage.ToString());
-                    cmd.Parameters.Clear();
-                    reset_overall();
-                    conn.Close();
-                }
-            }
-            catch (Exception ab)
-            {
-                MessageBox.Show("Error Generated Details :" + ab.ToString());
-            }
-        }
-
-        private void update_Click(object sender, EventArgs e)
-        {
-            if (conn.State == ConnectionState.Open)
-            {
-                conn.Close();
-            }
-            try
-            {
-                cmd.Parameters.Clear();
-                conn.ConnectionString = connectionstringtxt;
-                cmd.Connection = conn;
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "dbo.usp_vendor_testing_issuelog_update_dotnet";
-                cmd.Parameters.Add("@Message", SqlDbType.NVarChar, 1000);
-                cmd.Parameters["@Message"].Direction = ParameterDirection.Output;
-                cmd.Parameters.AddWithValue("@RequestID",requestid.Text);
                 if (string.IsNullOrEmpty(vendor.Text))
                 {
                     cmd.Parameters.AddWithValue("@Vendor", DBNull.Value);
@@ -457,11 +270,204 @@ namespace Vendor_Testing_Issue_Log
                 }
                 if (checkBox1.Checked == true)
                 {
-                    cmd.Parameters.AddWithValue("@Chaser_Sent", 1);
+                    cmd.Parameters.AddWithValue("@Chaser_Date_Editable", 1);
+                    chaser_date.Enabled = true;
                 }
                 else
                 {
-                    cmd.Parameters.AddWithValue("@Chaser_Sent", 0);
+                    cmd.Parameters.AddWithValue("@Chaser_Date_Editable", 0);
+                    chaser_date.Enabled = false;
+                }
+                if (issue_resolved_date.Text.Trim() == string.Empty)
+                {
+                    cmd.Parameters.AddWithValue("@Issue_Resolved_Date", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Issue_Resolved_Date", issue_resolved_date.Value.Date);
+                }
+                if (string.IsNullOrEmpty(associate_name.Text))
+                {
+                    cmd.Parameters.AddWithValue("@Associate_Name", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Associate_Name", associate_name.Text);
+                }
+                if (string.IsNullOrEmpty(ops_comments.Text))
+                {
+                    cmd.Parameters.AddWithValue("@Ops_Comments", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Ops_Comments", ops_comments.Text);
+                }
+                if (string.IsNullOrEmpty(moodys_dnb_comments.Text))
+                {
+                    cmd.Parameters.AddWithValue("@Moodys_DNB_Comments", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Moodys_DNB_Comments", moodys_dnb_comments.Text);
+                }
+                if (string.IsNullOrEmpty(risk_category.Text))
+                {
+                    cmd.Parameters.AddWithValue("@Risk_Catetory", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Risk_Catetory", risk_category.Text);
+                }
+                if (string.IsNullOrEmpty(priority_level.Text))
+                {
+                    cmd.Parameters.AddWithValue("@Priority_Level", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Priority_Level", priority_level.Text);
+                }
+                cmd.Parameters.AddWithValue("@LastUpdatedBy", Environment.UserName.ToString());
+                cmd.Parameters.AddWithValue("@MachineName", Environment.MachineName.ToString());
+
+
+                //if conditions
+                if (issue_resolved_date.Text.Trim() != string.Empty && string.IsNullOrEmpty(moodys_dnb_comments.Text))
+                {
+                    MessageBox.Show("Please update Moodys DNB Comments");
+                }
+                else if (vendor.Text == "Moodys" && string.IsNullOrEmpty(platform.Text))
+                {
+                    MessageBox.Show("Please update Platform");
+                }
+                else if (issue_raised_date.Text.Trim() == string.Empty)
+                {
+                    MessageBox.Show("Please update Issue Raised Date");
+                }
+                else if (string.IsNullOrEmpty(vendor.Text))
+                {
+                    MessageBox.Show("Please update Vendor");
+                }
+                else if (string.IsNullOrEmpty(platform.Text))
+                {
+                    MessageBox.Show("Please update Platform");
+                }
+                else if (string.IsNullOrEmpty(associate_name.Text))
+                {
+                    MessageBox.Show("Please update Associate Name");
+                }
+                else if (string.IsNullOrEmpty(ops_comments.Text))
+                {
+                    MessageBox.Show("Please update Ops Comments");
+                }
+                else if (string.IsNullOrEmpty(risk_category.Text))
+                {
+                    MessageBox.Show("Please update Risk Category");
+                }
+                else if (string.IsNullOrEmpty(priority_level.Text))
+                {
+                    MessageBox.Show("Please update Priority Level");
+                }
+                else if (issue_raised_date.Text.Trim() != string.Empty && issue_raised_date.Value.Date > current_datetime.Value.Date)
+                {
+                    MessageBox.Show("Issue Raised Date cannot be more than Today's date");
+                }
+                else if (issue_resolved_date.Text.Trim() != string.Empty && issue_raised_date.Value.Date > current_datetime.Value.Date)
+                {
+                    MessageBox.Show("Issue Resolved Date cannot be more than Today's date");
+                }
+                else
+                {
+
+                    conn.Open();
+                    cmd.Connection = conn;
+                    cmd.ExecuteNonQuery();
+                    string uploadmessage = cmd.Parameters["@Message"].Value.ToString();
+                    MessageBox.Show("" + uploadmessage.ToString());
+                    cmd.Parameters.Clear();
+                    reset_overall();
+                    conn.Close();
+                }
+            }
+            catch (Exception ab)
+            {
+                MessageBox.Show("Error Generated Details :" + ab.ToString());
+            }
+        }
+
+        private void update_Click(object sender, EventArgs e)
+        {
+            if (conn.State == ConnectionState.Open)
+            {
+                conn.Close();
+            }
+            try
+            {
+                cmd.Parameters.Clear();
+                conn.ConnectionString = connectionstringtxt;
+                cmd.Connection = conn;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "dbo.usp_vendor_testing_issuelog_update_dotnet";
+                cmd.Parameters.Add("@Message", SqlDbType.NVarChar, 1000);
+                cmd.Parameters["@Message"].Direction = ParameterDirection.Output;
+                cmd.Parameters.AddWithValue("@RequestID", requestid.Text);
+                if (string.IsNullOrEmpty(vendor.Text))
+                {
+                    cmd.Parameters.AddWithValue("@Vendor", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Vendor", vendor.Text);
+                }
+                if (string.IsNullOrEmpty(platform.Text))
+                {
+                    cmd.Parameters.AddWithValue("@Platform", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Platform", platform.Text);
+                }
+                if (string.IsNullOrEmpty(entity_individual_name.Text))
+                {
+                    cmd.Parameters.AddWithValue("@Entity_Individual_Name", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Entity_Individual_Name", entity_individual_name.Text);
+                }
+                if (string.IsNullOrEmpty(wft_batch_requestid.Text))
+                {
+                    cmd.Parameters.AddWithValue("@WFT_Batch_RequestID", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@WFT_Batch_RequestID", wft_batch_requestid.Text);
+                }
+                if (issue_raised_date.Text.Trim() == string.Empty)
+                {
+                    cmd.Parameters.AddWithValue("@Issue_Raised_Date", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Issue_Raised_Date", issue_raised_date.Value.Date);
+                }
+                //if (chaser_date.Text.Trim() == string.Empty)
+                //{
+                //    cmd.Parameters.AddWithValue("@Chaser_Date", DBNull.Value);
+                //}
+                //else
+                //{
+                //    cmd.Parameters.AddWithValue("@Chaser_Date", chaser_date.Value.Date);
+                //}
+                if (checkBox1.Checked == true)
+                {
+                    cmd.Parameters.AddWithValue("@Chaser_Date_Editable", 1);
+                    chaser_date.Enabled = true;
+                    cmd.Parameters.AddWithValue("@Chaser_Date", chaser_date.Value.Date);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Chaser_Date_Editable", 0);
+                    chaser_date.Enabled = false;
                 }
                 if (issue_resolved_date.Text.Trim() == string.Empty)
                 {
@@ -597,7 +603,7 @@ namespace Vendor_Testing_Issue_Log
                 if (string.IsNullOrEmpty(searchby_requestid.Text) && string.IsNullOrEmpty(searchby_entityname.Text) && string.IsNullOrEmpty(searchby_associatename.Text))
                 {
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "select top 100 RequestID,Vendor,Platform,Entity_Individual_Name,WFT_Batch_RequestID,Issue_Raised_Date,Chaser_Date,case when Chaser_Sent = 0 then null else Chaser_Sent end as Chaser_Sent ,Issue_Resolved_Date,Associate_Name,Ops_Comments,Moodys_DNB_Comments,Risk_Catetory,Priority_Level,LastUpdatedBy from dbo.tbl_vendor_testing_issuelog_dotnet with(nolock) where IsDeleted = 0";
+                    cmd.CommandText = "select top 100 RequestID,Vendor,Platform,Entity_Individual_Name,WFT_Batch_RequestID,Issue_Raised_Date,Chaser_Date,case when Chaser_Date_Editable = 0 then null else Chaser_Date_Editable end as Chaser_Date_Editable ,Issue_Resolved_Date,Associate_Name,Ops_Comments,Moodys_DNB_Comments,Risk_Catetory,Priority_Level,LastUpdatedBy from dbo.tbl_vendor_testing_issuelog_dotnet with(nolock) where IsDeleted = 0";
                     cmd.Parameters.AddWithValue("@lastupdatedby", Environment.UserName.ToString());
                 }
                 else
@@ -703,13 +709,15 @@ namespace Vendor_Testing_Issue_Log
                         chaser_date.Text = row.Cells["txt_Chaser_Date"].Value.ToString();
                         chaser_date.CustomFormat = "dd-MMMM-yyyy";
                     }
-                    if (string.IsNullOrEmpty(row.Cells["txt_ChaserSent"].Value.ToString()))
+                    if (string.IsNullOrEmpty(row.Cells["txt_Chaser_Date_Editable"].Value.ToString()))
                     {
                         checkBox1.Checked = false;
+                        chaser_date.Enabled = false;
                     }
                     else
                     {
                         checkBox1.Checked = true;
+                        chaser_date.Enabled = true;
                     }
                     if (string.IsNullOrEmpty(row.Cells["txt_Issue_Resolved_Date"].Value.ToString()))
                     {
@@ -796,12 +804,57 @@ namespace Vendor_Testing_Issue_Log
         {
             try
             {
-                System.Diagnostics.Process.Start("http://a20-cb-dbse01p/Reports/report/DRD%20MI%20Mumbai/DRD%20Reports/rpt_SSRS_Vendor_Testing_IssueLog_DotNet");
+                System.Diagnostics.Process.Start("https://app.powerbi.com/groups/81c3ab7d-0a2a-46f2-b54f-38eb239011a1/reports/e7ff3a51-4c79-4aa0-95f8-aa0bf3aa3bba/ReportSection31a41de679b2bcefa277?experience=power-bi");
             }
             catch (Exception ab)
             {
                 MessageBox.Show("Unable to open link that was clicked. Following are the error generated details" + ab.ToString());
             }
         }
-    }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked == true)
+            {
+                chaser_date.Enabled = true;
+            }
+            else
+            {
+                chaser_date.Enabled = false;
+            }
+        }
+
+        private void update_chaser_date_Click(object sender, EventArgs e)
+        {
+            if (conn.State == ConnectionState.Open)
+            {
+                conn.Close();
+            }
+            try
+            {
+                cmd.Parameters.Clear();
+                conn.ConnectionString = connectionstringtxt;
+                cmd.Connection = conn;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "dbo.usp_vendor_testing_issuelog_update_chaserdate_dotnet";
+                cmd.Parameters.Add("@Message", SqlDbType.NVarChar, 1000);
+                cmd.Parameters["@Message"].Direction = ParameterDirection.Output;
+                cmd.Parameters.AddWithValue("@RequestID", requestid.Text);
+
+                conn.Open();
+                cmd.Connection = conn;
+                cmd.ExecuteNonQuery();
+                string uploadmessage = cmd.Parameters["@Message"].Value.ToString();
+                MessageBox.Show("" + uploadmessage.ToString());
+                cmd.Parameters.Clear();
+                reset_overall();
+                conn.Close();
+            }
+            catch (Exception ab)
+            {
+                MessageBox.Show("Error Generated Details :" + ab.ToString());
+            }
+        }
+
+    }   
 }

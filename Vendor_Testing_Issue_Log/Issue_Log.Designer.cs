@@ -61,21 +61,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.txt_RequestID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txt_Vendor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txt_Platform = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txt_Entity_Individual_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txt_WFT_Batch_RequestID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txt_Issue_Raised_Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txt_Chaser_Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txt_Chaser_Sent = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txt_Issue_Resolved_Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txt_Associate_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txt_Ops_Comments = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txt_Moodys_DNB_Comments = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txt_Risk_Catetory = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txt_Priority_Level = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txt_LastUpdatedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.searchby_requestid = new System.Windows.Forms.TextBox();
             this.searchby_entityname = new System.Windows.Forms.TextBox();
             this.searchby_associatename = new System.Windows.Forms.ComboBox();
@@ -83,12 +68,29 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.raw_data = new System.Windows.Forms.Button();
+            this.txt_RequestID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txt_Vendor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txt_Platform = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txt_Entity_Individual_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txt_WFT_Batch_RequestID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txt_Issue_Raised_Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txt_Chaser_Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txt_Chaser_Date_Editable = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txt_Issue_Resolved_Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txt_Associate_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txt_Ops_Comments = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txt_Moodys_DNB_Comments = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txt_Risk_Catetory = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txt_Priority_Level = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txt_LastUpdatedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.update_chaser_date = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.update_chaser_date);
             this.groupBox1.Controls.Add(this.current_datetime);
             this.groupBox1.Controls.Add(this.reset);
             this.groupBox1.Controls.Add(this.update);
@@ -222,10 +224,11 @@
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(1102, 121);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(124, 24);
+            this.checkBox1.Size = new System.Drawing.Size(118, 44);
             this.checkBox1.TabIndex = 14;
-            this.checkBox1.Text = "Chaser Sent";
+            this.checkBox1.Text = "Edit Chaser\r\nDate";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // chaser_date
             // 
@@ -417,7 +420,7 @@
             this.txt_WFT_Batch_RequestID,
             this.txt_Issue_Raised_Date,
             this.txt_Chaser_Date,
-            this.txt_Chaser_Sent,
+            this.txt_Chaser_Date_Editable,
             this.txt_Issue_Resolved_Date,
             this.txt_Associate_Name,
             this.txt_Ops_Comments,
@@ -433,141 +436,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(1691, 490);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // txt_RequestID
-            // 
-            this.txt_RequestID.DataPropertyName = "RequestID";
-            this.txt_RequestID.HeaderText = "RequestID";
-            this.txt_RequestID.MinimumWidth = 8;
-            this.txt_RequestID.Name = "txt_RequestID";
-            this.txt_RequestID.ReadOnly = true;
-            this.txt_RequestID.Width = 150;
-            // 
-            // txt_Vendor
-            // 
-            this.txt_Vendor.DataPropertyName = "Vendor";
-            this.txt_Vendor.HeaderText = "Vendor";
-            this.txt_Vendor.MinimumWidth = 8;
-            this.txt_Vendor.Name = "txt_Vendor";
-            this.txt_Vendor.ReadOnly = true;
-            this.txt_Vendor.Width = 150;
-            // 
-            // txt_Platform
-            // 
-            this.txt_Platform.DataPropertyName = "Platform";
-            this.txt_Platform.HeaderText = "Platform";
-            this.txt_Platform.MinimumWidth = 8;
-            this.txt_Platform.Name = "txt_Platform";
-            this.txt_Platform.ReadOnly = true;
-            this.txt_Platform.Width = 150;
-            // 
-            // txt_Entity_Individual_Name
-            // 
-            this.txt_Entity_Individual_Name.DataPropertyName = "Entity_Individual_Name";
-            this.txt_Entity_Individual_Name.HeaderText = "Entity_Individual_Name";
-            this.txt_Entity_Individual_Name.MinimumWidth = 8;
-            this.txt_Entity_Individual_Name.Name = "txt_Entity_Individual_Name";
-            this.txt_Entity_Individual_Name.ReadOnly = true;
-            this.txt_Entity_Individual_Name.Width = 150;
-            // 
-            // txt_WFT_Batch_RequestID
-            // 
-            this.txt_WFT_Batch_RequestID.DataPropertyName = "WFT_Batch_RequestID";
-            this.txt_WFT_Batch_RequestID.HeaderText = "WFT_Batch_RequestID";
-            this.txt_WFT_Batch_RequestID.MinimumWidth = 8;
-            this.txt_WFT_Batch_RequestID.Name = "txt_WFT_Batch_RequestID";
-            this.txt_WFT_Batch_RequestID.ReadOnly = true;
-            this.txt_WFT_Batch_RequestID.Width = 150;
-            // 
-            // txt_Issue_Raised_Date
-            // 
-            this.txt_Issue_Raised_Date.DataPropertyName = "Issue_Raised_Date";
-            this.txt_Issue_Raised_Date.HeaderText = "Issue_Raised_Date";
-            this.txt_Issue_Raised_Date.MinimumWidth = 8;
-            this.txt_Issue_Raised_Date.Name = "txt_Issue_Raised_Date";
-            this.txt_Issue_Raised_Date.ReadOnly = true;
-            this.txt_Issue_Raised_Date.Width = 150;
-            // 
-            // txt_Chaser_Date
-            // 
-            this.txt_Chaser_Date.DataPropertyName = "Chaser_Date";
-            this.txt_Chaser_Date.HeaderText = "Chaser_Date";
-            this.txt_Chaser_Date.MinimumWidth = 8;
-            this.txt_Chaser_Date.Name = "txt_Chaser_Date";
-            this.txt_Chaser_Date.ReadOnly = true;
-            this.txt_Chaser_Date.Width = 150;
-            // 
-            // txt_Chaser_Sent
-            // 
-            this.txt_Chaser_Sent.DataPropertyName = "Chaser_Sent";
-            this.txt_Chaser_Sent.HeaderText = "Chaser_Sent";
-            this.txt_Chaser_Sent.MinimumWidth = 8;
-            this.txt_Chaser_Sent.Name = "txt_Chaser_Sent";
-            this.txt_Chaser_Sent.ReadOnly = true;
-            this.txt_Chaser_Sent.Width = 150;
-            // 
-            // txt_Issue_Resolved_Date
-            // 
-            this.txt_Issue_Resolved_Date.DataPropertyName = "Issue_Resolved_Date";
-            this.txt_Issue_Resolved_Date.HeaderText = "Issue_Resolved_Date";
-            this.txt_Issue_Resolved_Date.MinimumWidth = 8;
-            this.txt_Issue_Resolved_Date.Name = "txt_Issue_Resolved_Date";
-            this.txt_Issue_Resolved_Date.ReadOnly = true;
-            this.txt_Issue_Resolved_Date.Width = 150;
-            // 
-            // txt_Associate_Name
-            // 
-            this.txt_Associate_Name.DataPropertyName = "Associate_Name";
-            this.txt_Associate_Name.HeaderText = "Associate_Name";
-            this.txt_Associate_Name.MinimumWidth = 8;
-            this.txt_Associate_Name.Name = "txt_Associate_Name";
-            this.txt_Associate_Name.ReadOnly = true;
-            this.txt_Associate_Name.Width = 150;
-            // 
-            // txt_Ops_Comments
-            // 
-            this.txt_Ops_Comments.DataPropertyName = "Ops_Comments";
-            this.txt_Ops_Comments.HeaderText = "Ops_Comments";
-            this.txt_Ops_Comments.MinimumWidth = 8;
-            this.txt_Ops_Comments.Name = "txt_Ops_Comments";
-            this.txt_Ops_Comments.ReadOnly = true;
-            this.txt_Ops_Comments.Width = 150;
-            // 
-            // txt_Moodys_DNB_Comments
-            // 
-            this.txt_Moodys_DNB_Comments.DataPropertyName = "Moodys_DNB_Comments";
-            this.txt_Moodys_DNB_Comments.HeaderText = "Moodys_DNB_Comments";
-            this.txt_Moodys_DNB_Comments.MinimumWidth = 8;
-            this.txt_Moodys_DNB_Comments.Name = "txt_Moodys_DNB_Comments";
-            this.txt_Moodys_DNB_Comments.ReadOnly = true;
-            this.txt_Moodys_DNB_Comments.Width = 150;
-            // 
-            // txt_Risk_Catetory
-            // 
-            this.txt_Risk_Catetory.DataPropertyName = "Risk_Catetory";
-            this.txt_Risk_Catetory.HeaderText = "Risk_Catetory";
-            this.txt_Risk_Catetory.MinimumWidth = 8;
-            this.txt_Risk_Catetory.Name = "txt_Risk_Catetory";
-            this.txt_Risk_Catetory.ReadOnly = true;
-            this.txt_Risk_Catetory.Width = 150;
-            // 
-            // txt_Priority_Level
-            // 
-            this.txt_Priority_Level.DataPropertyName = "Priority_Level";
-            this.txt_Priority_Level.HeaderText = "Priority_Level";
-            this.txt_Priority_Level.MinimumWidth = 8;
-            this.txt_Priority_Level.Name = "txt_Priority_Level";
-            this.txt_Priority_Level.ReadOnly = true;
-            this.txt_Priority_Level.Width = 150;
-            // 
-            // txt_LastUpdatedBy
-            // 
-            this.txt_LastUpdatedBy.DataPropertyName = "LastUpdatedBy";
-            this.txt_LastUpdatedBy.HeaderText = "LastUpdatedBy";
-            this.txt_LastUpdatedBy.MinimumWidth = 8;
-            this.txt_LastUpdatedBy.Name = "txt_LastUpdatedBy";
-            this.txt_LastUpdatedBy.ReadOnly = true;
-            this.txt_LastUpdatedBy.Width = 150;
             // 
             // searchby_requestid
             // 
@@ -632,6 +500,151 @@
             this.raw_data.UseVisualStyleBackColor = true;
             this.raw_data.Click += new System.EventHandler(this.raw_data_Click);
             // 
+            // txt_RequestID
+            // 
+            this.txt_RequestID.DataPropertyName = "RequestID";
+            this.txt_RequestID.HeaderText = "RequestID";
+            this.txt_RequestID.MinimumWidth = 8;
+            this.txt_RequestID.Name = "txt_RequestID";
+            this.txt_RequestID.ReadOnly = true;
+            this.txt_RequestID.Width = 150;
+            // 
+            // txt_Vendor
+            // 
+            this.txt_Vendor.DataPropertyName = "Vendor";
+            this.txt_Vendor.HeaderText = "Vendor";
+            this.txt_Vendor.MinimumWidth = 8;
+            this.txt_Vendor.Name = "txt_Vendor";
+            this.txt_Vendor.ReadOnly = true;
+            this.txt_Vendor.Width = 150;
+            // 
+            // txt_Platform
+            // 
+            this.txt_Platform.DataPropertyName = "Platform";
+            this.txt_Platform.HeaderText = "Platform";
+            this.txt_Platform.MinimumWidth = 8;
+            this.txt_Platform.Name = "txt_Platform";
+            this.txt_Platform.ReadOnly = true;
+            this.txt_Platform.Width = 150;
+            // 
+            // txt_Entity_Individual_Name
+            // 
+            this.txt_Entity_Individual_Name.DataPropertyName = "Entity_Individual_Name";
+            this.txt_Entity_Individual_Name.HeaderText = "Entity_Individual_Name";
+            this.txt_Entity_Individual_Name.MinimumWidth = 8;
+            this.txt_Entity_Individual_Name.Name = "txt_Entity_Individual_Name";
+            this.txt_Entity_Individual_Name.ReadOnly = true;
+            this.txt_Entity_Individual_Name.Width = 150;
+            // 
+            // txt_WFT_Batch_RequestID
+            // 
+            this.txt_WFT_Batch_RequestID.DataPropertyName = "WFT_Batch_RequestID";
+            this.txt_WFT_Batch_RequestID.HeaderText = "WFT_Batch_RequestID";
+            this.txt_WFT_Batch_RequestID.MinimumWidth = 8;
+            this.txt_WFT_Batch_RequestID.Name = "txt_WFT_Batch_RequestID";
+            this.txt_WFT_Batch_RequestID.ReadOnly = true;
+            this.txt_WFT_Batch_RequestID.Width = 150;
+            // 
+            // txt_Issue_Raised_Date
+            // 
+            this.txt_Issue_Raised_Date.DataPropertyName = "Issue_Raised_Date";
+            this.txt_Issue_Raised_Date.HeaderText = "Issue_Raised_Date";
+            this.txt_Issue_Raised_Date.MinimumWidth = 8;
+            this.txt_Issue_Raised_Date.Name = "txt_Issue_Raised_Date";
+            this.txt_Issue_Raised_Date.ReadOnly = true;
+            this.txt_Issue_Raised_Date.Width = 150;
+            // 
+            // txt_Chaser_Date
+            // 
+            this.txt_Chaser_Date.DataPropertyName = "Chaser_Date";
+            this.txt_Chaser_Date.HeaderText = "Chaser_Date";
+            this.txt_Chaser_Date.MinimumWidth = 8;
+            this.txt_Chaser_Date.Name = "txt_Chaser_Date";
+            this.txt_Chaser_Date.ReadOnly = true;
+            this.txt_Chaser_Date.Width = 150;
+            // 
+            // txt_Chaser_Date_Editable
+            // 
+            this.txt_Chaser_Date_Editable.DataPropertyName = "Chaser_Date_Editable";
+            this.txt_Chaser_Date_Editable.HeaderText = "Chaser_Date_Editable";
+            this.txt_Chaser_Date_Editable.MinimumWidth = 8;
+            this.txt_Chaser_Date_Editable.Name = "txt_Chaser_Date_Editable";
+            this.txt_Chaser_Date_Editable.ReadOnly = true;
+            this.txt_Chaser_Date_Editable.Width = 150;
+            // 
+            // txt_Issue_Resolved_Date
+            // 
+            this.txt_Issue_Resolved_Date.DataPropertyName = "Issue_Resolved_Date";
+            this.txt_Issue_Resolved_Date.HeaderText = "Issue_Resolved_Date";
+            this.txt_Issue_Resolved_Date.MinimumWidth = 8;
+            this.txt_Issue_Resolved_Date.Name = "txt_Issue_Resolved_Date";
+            this.txt_Issue_Resolved_Date.ReadOnly = true;
+            this.txt_Issue_Resolved_Date.Width = 150;
+            // 
+            // txt_Associate_Name
+            // 
+            this.txt_Associate_Name.DataPropertyName = "Associate_Name";
+            this.txt_Associate_Name.HeaderText = "Associate_Name";
+            this.txt_Associate_Name.MinimumWidth = 8;
+            this.txt_Associate_Name.Name = "txt_Associate_Name";
+            this.txt_Associate_Name.ReadOnly = true;
+            this.txt_Associate_Name.Width = 150;
+            // 
+            // txt_Ops_Comments
+            // 
+            this.txt_Ops_Comments.DataPropertyName = "Ops_Comments";
+            this.txt_Ops_Comments.HeaderText = "Ops_Comments";
+            this.txt_Ops_Comments.MinimumWidth = 8;
+            this.txt_Ops_Comments.Name = "txt_Ops_Comments";
+            this.txt_Ops_Comments.ReadOnly = true;
+            this.txt_Ops_Comments.Width = 150;
+            // 
+            // txt_Moodys_DNB_Comments
+            // 
+            this.txt_Moodys_DNB_Comments.DataPropertyName = "Moodys_DNB_Comments";
+            this.txt_Moodys_DNB_Comments.HeaderText = "Moodys_DNB_Comments";
+            this.txt_Moodys_DNB_Comments.MinimumWidth = 8;
+            this.txt_Moodys_DNB_Comments.Name = "txt_Moodys_DNB_Comments";
+            this.txt_Moodys_DNB_Comments.ReadOnly = true;
+            this.txt_Moodys_DNB_Comments.Width = 150;
+            // 
+            // txt_Risk_Catetory
+            // 
+            this.txt_Risk_Catetory.DataPropertyName = "Risk_Catetory";
+            this.txt_Risk_Catetory.HeaderText = "Risk_Catetory";
+            this.txt_Risk_Catetory.MinimumWidth = 8;
+            this.txt_Risk_Catetory.Name = "txt_Risk_Catetory";
+            this.txt_Risk_Catetory.ReadOnly = true;
+            this.txt_Risk_Catetory.Width = 150;
+            // 
+            // txt_Priority_Level
+            // 
+            this.txt_Priority_Level.DataPropertyName = "Priority_Level";
+            this.txt_Priority_Level.HeaderText = "Priority_Level";
+            this.txt_Priority_Level.MinimumWidth = 8;
+            this.txt_Priority_Level.Name = "txt_Priority_Level";
+            this.txt_Priority_Level.ReadOnly = true;
+            this.txt_Priority_Level.Width = 150;
+            // 
+            // txt_LastUpdatedBy
+            // 
+            this.txt_LastUpdatedBy.DataPropertyName = "LastUpdatedBy";
+            this.txt_LastUpdatedBy.HeaderText = "LastUpdatedBy";
+            this.txt_LastUpdatedBy.MinimumWidth = 8;
+            this.txt_LastUpdatedBy.Name = "txt_LastUpdatedBy";
+            this.txt_LastUpdatedBy.ReadOnly = true;
+            this.txt_LastUpdatedBy.Width = 150;
+            // 
+            // update_chaser_date
+            // 
+            this.update_chaser_date.Location = new System.Drawing.Point(758, 292);
+            this.update_chaser_date.Name = "update_chaser_date";
+            this.update_chaser_date.Size = new System.Drawing.Size(202, 46);
+            this.update_chaser_date.TabIndex = 30;
+            this.update_chaser_date.Text = "Update Chaser Dates";
+            this.update_chaser_date.UseVisualStyleBackColor = true;
+            this.update_chaser_date.Click += new System.EventHandler(this.update_chaser_date_Click);
+            // 
             // Issue_Log
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -694,21 +707,6 @@
         private System.Windows.Forms.Button insert;
         private System.Windows.Forms.DateTimePicker current_datetime;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn txt_RequestID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn txt_Vendor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn txt_Platform;
-        private System.Windows.Forms.DataGridViewTextBoxColumn txt_Entity_Individual_Name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn txt_WFT_Batch_RequestID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn txt_Issue_Raised_Date;
-        private System.Windows.Forms.DataGridViewTextBoxColumn txt_Chaser_Date;
-        private System.Windows.Forms.DataGridViewTextBoxColumn txt_Chaser_Sent;
-        private System.Windows.Forms.DataGridViewTextBoxColumn txt_Issue_Resolved_Date;
-        private System.Windows.Forms.DataGridViewTextBoxColumn txt_Associate_Name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn txt_Ops_Comments;
-        private System.Windows.Forms.DataGridViewTextBoxColumn txt_Moodys_DNB_Comments;
-        private System.Windows.Forms.DataGridViewTextBoxColumn txt_Risk_Catetory;
-        private System.Windows.Forms.DataGridViewTextBoxColumn txt_Priority_Level;
-        private System.Windows.Forms.DataGridViewTextBoxColumn txt_LastUpdatedBy;
         private System.Windows.Forms.TextBox searchby_requestid;
         private System.Windows.Forms.TextBox searchby_entityname;
         private System.Windows.Forms.ComboBox searchby_associatename;
@@ -716,5 +714,21 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Button raw_data;
+        private System.Windows.Forms.DataGridViewTextBoxColumn txt_RequestID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn txt_Vendor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn txt_Platform;
+        private System.Windows.Forms.DataGridViewTextBoxColumn txt_Entity_Individual_Name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn txt_WFT_Batch_RequestID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn txt_Issue_Raised_Date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn txt_Chaser_Date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn txt_Chaser_Date_Editable;
+        private System.Windows.Forms.DataGridViewTextBoxColumn txt_Issue_Resolved_Date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn txt_Associate_Name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn txt_Ops_Comments;
+        private System.Windows.Forms.DataGridViewTextBoxColumn txt_Moodys_DNB_Comments;
+        private System.Windows.Forms.DataGridViewTextBoxColumn txt_Risk_Catetory;
+        private System.Windows.Forms.DataGridViewTextBoxColumn txt_Priority_Level;
+        private System.Windows.Forms.DataGridViewTextBoxColumn txt_LastUpdatedBy;
+        private System.Windows.Forms.Button update_chaser_date;
     }
 }
