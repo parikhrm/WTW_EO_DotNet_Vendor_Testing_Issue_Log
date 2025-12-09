@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.update_chaser_date = new System.Windows.Forms.Button();
             this.current_datetime = new System.Windows.Forms.DateTimePicker();
             this.reset = new System.Windows.Forms.Button();
             this.update = new System.Windows.Forms.Button();
@@ -61,13 +62,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.searchby_requestid = new System.Windows.Forms.TextBox();
-            this.searchby_entityname = new System.Windows.Forms.TextBox();
-            this.searchby_associatename = new System.Windows.Forms.ComboBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.raw_data = new System.Windows.Forms.Button();
             this.txt_RequestID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txt_Vendor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txt_Platform = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -83,7 +77,13 @@
             this.txt_Risk_Catetory = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txt_Priority_Level = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txt_LastUpdatedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.update_chaser_date = new System.Windows.Forms.Button();
+            this.searchby_requestid = new System.Windows.Forms.TextBox();
+            this.searchby_entityname = new System.Windows.Forms.TextBox();
+            this.searchby_associatename = new System.Windows.Forms.ComboBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.raw_data = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -128,11 +128,21 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
+            // update_chaser_date
+            // 
+            this.update_chaser_date.Location = new System.Drawing.Point(758, 292);
+            this.update_chaser_date.Name = "update_chaser_date";
+            this.update_chaser_date.Size = new System.Drawing.Size(202, 46);
+            this.update_chaser_date.TabIndex = 30;
+            this.update_chaser_date.Text = "Update Chaser Dates";
+            this.update_chaser_date.UseVisualStyleBackColor = true;
+            this.update_chaser_date.Click += new System.EventHandler(this.update_chaser_date_Click);
+            // 
             // current_datetime
             // 
-            this.current_datetime.Location = new System.Drawing.Point(1573, 270);
+            this.current_datetime.Location = new System.Drawing.Point(1413, 270);
             this.current_datetime.Name = "current_datetime";
-            this.current_datetime.Size = new System.Drawing.Size(89, 26);
+            this.current_datetime.Size = new System.Drawing.Size(249, 26);
             this.current_datetime.TabIndex = 22;
             // 
             // reset
@@ -238,6 +248,8 @@
             this.chaser_date.Name = "chaser_date";
             this.chaser_date.Size = new System.Drawing.Size(242, 26);
             this.chaser_date.TabIndex = 13;
+            this.chaser_date.ValueChanged += new System.EventHandler(this.chaser_date_ValueChanged);
+            this.chaser_date.KeyDown += new System.Windows.Forms.KeyEventHandler(this.chaser_date_KeyDown);
             // 
             // issue_raised_date
             // 
@@ -437,69 +449,6 @@
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // searchby_requestid
-            // 
-            this.searchby_requestid.Location = new System.Drawing.Point(312, 425);
-            this.searchby_requestid.Name = "searchby_requestid";
-            this.searchby_requestid.Size = new System.Drawing.Size(203, 26);
-            this.searchby_requestid.TabIndex = 2;
-            this.searchby_requestid.TextChanged += new System.EventHandler(this.searchby_requestid_TextChanged);
-            // 
-            // searchby_entityname
-            // 
-            this.searchby_entityname.Location = new System.Drawing.Point(539, 425);
-            this.searchby_entityname.Name = "searchby_entityname";
-            this.searchby_entityname.Size = new System.Drawing.Size(309, 26);
-            this.searchby_entityname.TabIndex = 3;
-            this.searchby_entityname.TextChanged += new System.EventHandler(this.searchby_entityname_TextChanged);
-            // 
-            // searchby_associatename
-            // 
-            this.searchby_associatename.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.searchby_associatename.FormattingEnabled = true;
-            this.searchby_associatename.Location = new System.Drawing.Point(872, 425);
-            this.searchby_associatename.Name = "searchby_associatename";
-            this.searchby_associatename.Size = new System.Drawing.Size(246, 28);
-            this.searchby_associatename.TabIndex = 4;
-            this.searchby_associatename.SelectedIndexChanged += new System.EventHandler(this.searchby_associatename_SelectedIndexChanged);
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(331, 463);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(158, 20);
-            this.label14.TabIndex = 5;
-            this.label14.Text = "Searchby RequestID";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(603, 463);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(166, 20);
-            this.label15.TabIndex = 6;
-            this.label15.Text = "Searchby Entity Name";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(893, 463);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(196, 20);
-            this.label16.TabIndex = 7;
-            this.label16.Text = "Searchby Associate Name";
-            // 
-            // raw_data
-            // 
-            this.raw_data.Location = new System.Drawing.Point(34, 427);
-            this.raw_data.Name = "raw_data";
-            this.raw_data.Size = new System.Drawing.Size(158, 45);
-            this.raw_data.TabIndex = 8;
-            this.raw_data.Text = "Raw Data";
-            this.raw_data.UseVisualStyleBackColor = true;
-            this.raw_data.Click += new System.EventHandler(this.raw_data_Click);
-            // 
             // txt_RequestID
             // 
             this.txt_RequestID.DataPropertyName = "RequestID";
@@ -635,15 +584,68 @@
             this.txt_LastUpdatedBy.ReadOnly = true;
             this.txt_LastUpdatedBy.Width = 150;
             // 
-            // update_chaser_date
+            // searchby_requestid
             // 
-            this.update_chaser_date.Location = new System.Drawing.Point(758, 292);
-            this.update_chaser_date.Name = "update_chaser_date";
-            this.update_chaser_date.Size = new System.Drawing.Size(202, 46);
-            this.update_chaser_date.TabIndex = 30;
-            this.update_chaser_date.Text = "Update Chaser Dates";
-            this.update_chaser_date.UseVisualStyleBackColor = true;
-            this.update_chaser_date.Click += new System.EventHandler(this.update_chaser_date_Click);
+            this.searchby_requestid.Location = new System.Drawing.Point(312, 425);
+            this.searchby_requestid.Name = "searchby_requestid";
+            this.searchby_requestid.Size = new System.Drawing.Size(203, 26);
+            this.searchby_requestid.TabIndex = 2;
+            this.searchby_requestid.TextChanged += new System.EventHandler(this.searchby_requestid_TextChanged);
+            // 
+            // searchby_entityname
+            // 
+            this.searchby_entityname.Location = new System.Drawing.Point(539, 425);
+            this.searchby_entityname.Name = "searchby_entityname";
+            this.searchby_entityname.Size = new System.Drawing.Size(309, 26);
+            this.searchby_entityname.TabIndex = 3;
+            this.searchby_entityname.TextChanged += new System.EventHandler(this.searchby_entityname_TextChanged);
+            // 
+            // searchby_associatename
+            // 
+            this.searchby_associatename.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.searchby_associatename.FormattingEnabled = true;
+            this.searchby_associatename.Location = new System.Drawing.Point(872, 425);
+            this.searchby_associatename.Name = "searchby_associatename";
+            this.searchby_associatename.Size = new System.Drawing.Size(246, 28);
+            this.searchby_associatename.TabIndex = 4;
+            this.searchby_associatename.SelectedIndexChanged += new System.EventHandler(this.searchby_associatename_SelectedIndexChanged);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(331, 463);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(158, 20);
+            this.label14.TabIndex = 5;
+            this.label14.Text = "Searchby RequestID";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(603, 463);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(166, 20);
+            this.label15.TabIndex = 6;
+            this.label15.Text = "Searchby Entity Name";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(893, 463);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(196, 20);
+            this.label16.TabIndex = 7;
+            this.label16.Text = "Searchby Associate Name";
+            // 
+            // raw_data
+            // 
+            this.raw_data.Location = new System.Drawing.Point(34, 427);
+            this.raw_data.Name = "raw_data";
+            this.raw_data.Size = new System.Drawing.Size(158, 45);
+            this.raw_data.TabIndex = 8;
+            this.raw_data.Text = "Raw Data";
+            this.raw_data.UseVisualStyleBackColor = true;
+            this.raw_data.Click += new System.EventHandler(this.raw_data_Click);
             // 
             // Issue_Log
             // 

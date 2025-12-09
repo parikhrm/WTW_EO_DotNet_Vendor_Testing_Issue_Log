@@ -468,6 +468,7 @@ namespace Vendor_Testing_Issue_Log
                 {
                     cmd.Parameters.AddWithValue("@Chaser_Date_Editable", 0);
                     chaser_date.Enabled = false;
+                    cmd.Parameters.AddWithValue("@Chaser_Date", DBNull.Value);
                 }
                 if (issue_resolved_date.Text.Trim() == string.Empty)
                 {
@@ -841,14 +842,21 @@ namespace Vendor_Testing_Issue_Log
                 cmd.Parameters["@Message"].Direction = ParameterDirection.Output;
                 cmd.Parameters.AddWithValue("@RequestID", requestid.Text);
 
-                conn.Open();
-                cmd.Connection = conn;
-                cmd.ExecuteNonQuery();
-                string uploadmessage = cmd.Parameters["@Message"].Value.ToString();
-                MessageBox.Show("" + uploadmessage.ToString());
-                cmd.Parameters.Clear();
-                reset_overall();
-                conn.Close();
+                if (string.IsNullOrEmpty(requestid.Text))
+                {
+                    MessageBox.Show("Request ID cannot be blank");
+                }
+                else
+                {
+                    conn.Open();
+                    cmd.Connection = conn;
+                    cmd.ExecuteNonQuery();
+                    string uploadmessage = cmd.Parameters["@Message"].Value.ToString();
+                    MessageBox.Show("" + uploadmessage.ToString());
+                    cmd.Parameters.Clear();
+                    reset_overall();
+                    conn.Close();
+                }
             }
             catch (Exception ab)
             {
@@ -856,5 +864,17 @@ namespace Vendor_Testing_Issue_Log
             }
         }
 
+        private void chaser_date_ValueChanged(object sender, EventArgs e)
+        {
+            chaser_date.CustomFormat = "dd-MMMM-yyyy";
+        }
+
+        private void chaser_date_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape || e.KeyCode == Keys.Delete || e.KeyCode == Keys.Space || e.KeyCode == Keys.Back)
+            {
+                chaser_date.CustomFormat = " ";
+            }
+        }
     }   
 }
