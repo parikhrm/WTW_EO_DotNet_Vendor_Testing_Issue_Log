@@ -62,7 +62,17 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.searchby_requestid = new System.Windows.Forms.TextBox();
+            this.searchby_entityname = new System.Windows.Forms.TextBox();
+            this.searchby_associatename = new System.Windows.Forms.ComboBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.raw_data = new System.Windows.Forms.Button();
+            this.label17 = new System.Windows.Forms.Label();
+            this.activity = new System.Windows.Forms.ComboBox();
             this.txt_RequestID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txt_Activity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txt_Vendor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txt_Platform = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txt_Entity_Individual_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -77,19 +87,14 @@
             this.txt_Risk_Catetory = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txt_Priority_Level = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txt_LastUpdatedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.searchby_requestid = new System.Windows.Forms.TextBox();
-            this.searchby_entityname = new System.Windows.Forms.TextBox();
-            this.searchby_associatename = new System.Windows.Forms.ComboBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.raw_data = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.activity);
+            this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Controls.Add(this.update_chaser_date);
             this.groupBox1.Controls.Add(this.current_datetime);
             this.groupBox1.Controls.Add(this.reset);
@@ -130,7 +135,7 @@
             // 
             // update_chaser_date
             // 
-            this.update_chaser_date.Location = new System.Drawing.Point(758, 292);
+            this.update_chaser_date.Location = new System.Drawing.Point(1395, 248);
             this.update_chaser_date.Name = "update_chaser_date";
             this.update_chaser_date.Size = new System.Drawing.Size(202, 46);
             this.update_chaser_date.TabIndex = 30;
@@ -140,14 +145,14 @@
             // 
             // current_datetime
             // 
-            this.current_datetime.Location = new System.Drawing.Point(1413, 270);
+            this.current_datetime.Location = new System.Drawing.Point(1469, 201);
             this.current_datetime.Name = "current_datetime";
-            this.current_datetime.Size = new System.Drawing.Size(249, 26);
+            this.current_datetime.Size = new System.Drawing.Size(101, 26);
             this.current_datetime.TabIndex = 22;
             // 
             // reset
             // 
-            this.reset.Location = new System.Drawing.Point(617, 292);
+            this.reset.Location = new System.Drawing.Point(1246, 300);
             this.reset.Name = "reset";
             this.reset.Size = new System.Drawing.Size(126, 46);
             this.reset.TabIndex = 29;
@@ -157,7 +162,7 @@
             // 
             // update
             // 
-            this.update.Location = new System.Drawing.Point(485, 292);
+            this.update.Location = new System.Drawing.Point(1246, 248);
             this.update.Name = "update";
             this.update.Size = new System.Drawing.Size(126, 46);
             this.update.TabIndex = 28;
@@ -167,7 +172,7 @@
             // 
             // insert
             // 
-            this.insert.Location = new System.Drawing.Point(353, 292);
+            this.insert.Location = new System.Drawing.Point(1246, 192);
             this.insert.Name = "insert";
             this.insert.Size = new System.Drawing.Size(126, 46);
             this.insert.TabIndex = 27;
@@ -179,7 +184,7 @@
             // 
             this.priority_level.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.priority_level.FormattingEnabled = true;
-            this.priority_level.Location = new System.Drawing.Point(92, 292);
+            this.priority_level.Location = new System.Drawing.Point(406, 206);
             this.priority_level.Name = "priority_level";
             this.priority_level.Size = new System.Drawing.Size(204, 28);
             this.priority_level.TabIndex = 26;
@@ -188,25 +193,25 @@
             // 
             this.risk_category.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.risk_category.FormattingEnabled = true;
-            this.risk_category.Location = new System.Drawing.Point(1401, 203);
+            this.risk_category.Location = new System.Drawing.Point(773, 206);
             this.risk_category.Name = "risk_category";
             this.risk_category.Size = new System.Drawing.Size(261, 28);
             this.risk_category.TabIndex = 24;
             // 
             // moodys_dnb_comments
             // 
-            this.moodys_dnb_comments.Location = new System.Drawing.Point(936, 202);
+            this.moodys_dnb_comments.Location = new System.Drawing.Point(758, 274);
             this.moodys_dnb_comments.Multiline = true;
             this.moodys_dnb_comments.Name = "moodys_dnb_comments";
-            this.moodys_dnb_comments.Size = new System.Drawing.Size(345, 26);
+            this.moodys_dnb_comments.Size = new System.Drawing.Size(471, 72);
             this.moodys_dnb_comments.TabIndex = 22;
             // 
             // ops_comments
             // 
-            this.ops_comments.Location = new System.Drawing.Point(436, 203);
+            this.ops_comments.Location = new System.Drawing.Point(142, 275);
             this.ops_comments.Multiline = true;
             this.ops_comments.Name = "ops_comments";
-            this.ops_comments.Size = new System.Drawing.Size(358, 50);
+            this.ops_comments.Size = new System.Drawing.Size(489, 71);
             this.ops_comments.TabIndex = 20;
             // 
             // associate_name
@@ -271,17 +276,17 @@
             // 
             // entity_individual_name
             // 
-            this.entity_individual_name.Location = new System.Drawing.Point(1064, 23);
+            this.entity_individual_name.Location = new System.Drawing.Point(1298, 23);
             this.entity_individual_name.Multiline = true;
             this.entity_individual_name.Name = "entity_individual_name";
-            this.entity_individual_name.Size = new System.Drawing.Size(408, 53);
+            this.entity_individual_name.Size = new System.Drawing.Size(361, 53);
             this.entity_individual_name.TabIndex = 7;
             // 
             // platform
             // 
             this.platform.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.platform.FormattingEnabled = true;
-            this.platform.Location = new System.Drawing.Point(672, 23);
+            this.platform.Location = new System.Drawing.Point(913, 23);
             this.platform.Name = "platform";
             this.platform.Size = new System.Drawing.Size(227, 28);
             this.platform.TabIndex = 5;
@@ -290,14 +295,14 @@
             // 
             this.vendor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.vendor.FormattingEnabled = true;
-            this.vendor.Location = new System.Drawing.Point(325, 23);
+            this.vendor.Location = new System.Drawing.Point(629, 23);
             this.vendor.Name = "vendor";
             this.vendor.Size = new System.Drawing.Size(185, 28);
             this.vendor.TabIndex = 3;
             // 
             // requestid
             // 
-            this.requestid.Location = new System.Drawing.Point(101, 26);
+            this.requestid.Location = new System.Drawing.Point(103, 20);
             this.requestid.Name = "requestid";
             this.requestid.Size = new System.Drawing.Size(122, 26);
             this.requestid.TabIndex = 1;
@@ -305,7 +310,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(1309, 202);
+            this.label13.Location = new System.Drawing.Point(681, 205);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(73, 40);
             this.label13.TabIndex = 23;
@@ -314,16 +319,16 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(816, 202);
+            this.label12.Location = new System.Drawing.Point(639, 275);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(110, 40);
+            this.label12.Size = new System.Drawing.Size(113, 40);
             this.label12.TabIndex = 21;
-            this.label12.Text = "Moodys / DNB\r\nComments";
+            this.label12.Text = "Moody\'s / DNB\r\nComments";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(309, 202);
+            this.label11.Location = new System.Drawing.Point(7, 274);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(119, 20);
             this.label11.TabIndex = 19;
@@ -332,7 +337,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(7, 292);
+            this.label10.Location = new System.Drawing.Point(321, 206);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(56, 40);
             this.label10.TabIndex = 25;
@@ -386,16 +391,16 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(939, 26);
+            this.label4.Location = new System.Drawing.Point(1155, 26);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(118, 40);
+            this.label4.Size = new System.Drawing.Size(127, 40);
             this.label4.TabIndex = 6;
-            this.label4.Text = "Entity / Indiviual\r\nName";
+            this.label4.Text = "Entity / Individual\r\nName";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(563, 26);
+            this.label3.Location = new System.Drawing.Point(829, 26);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(68, 20);
             this.label3.TabIndex = 4;
@@ -404,7 +409,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(235, 26);
+            this.label2.Location = new System.Drawing.Point(556, 26);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 20);
             this.label2.TabIndex = 2;
@@ -413,7 +418,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 26);
+            this.label1.Location = new System.Drawing.Point(7, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(87, 20);
             this.label1.TabIndex = 0;
@@ -426,6 +431,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.txt_RequestID,
+            this.txt_Activity,
             this.txt_Vendor,
             this.txt_Platform,
             this.txt_Entity_Individual_Name,
@@ -449,6 +455,87 @@
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
+            // searchby_requestid
+            // 
+            this.searchby_requestid.Location = new System.Drawing.Point(312, 425);
+            this.searchby_requestid.Name = "searchby_requestid";
+            this.searchby_requestid.Size = new System.Drawing.Size(203, 26);
+            this.searchby_requestid.TabIndex = 2;
+            this.searchby_requestid.TextChanged += new System.EventHandler(this.searchby_requestid_TextChanged);
+            // 
+            // searchby_entityname
+            // 
+            this.searchby_entityname.Location = new System.Drawing.Point(539, 425);
+            this.searchby_entityname.Name = "searchby_entityname";
+            this.searchby_entityname.Size = new System.Drawing.Size(309, 26);
+            this.searchby_entityname.TabIndex = 3;
+            this.searchby_entityname.TextChanged += new System.EventHandler(this.searchby_entityname_TextChanged);
+            // 
+            // searchby_associatename
+            // 
+            this.searchby_associatename.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.searchby_associatename.FormattingEnabled = true;
+            this.searchby_associatename.Location = new System.Drawing.Point(872, 425);
+            this.searchby_associatename.Name = "searchby_associatename";
+            this.searchby_associatename.Size = new System.Drawing.Size(246, 28);
+            this.searchby_associatename.TabIndex = 4;
+            this.searchby_associatename.SelectedIndexChanged += new System.EventHandler(this.searchby_associatename_SelectedIndexChanged);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(331, 463);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(158, 20);
+            this.label14.TabIndex = 5;
+            this.label14.Text = "Searchby RequestID";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(603, 463);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(166, 20);
+            this.label15.TabIndex = 6;
+            this.label15.Text = "Searchby Entity Name";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(893, 463);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(196, 20);
+            this.label16.TabIndex = 7;
+            this.label16.Text = "Searchby Associate Name";
+            // 
+            // raw_data
+            // 
+            this.raw_data.Location = new System.Drawing.Point(34, 427);
+            this.raw_data.Name = "raw_data";
+            this.raw_data.Size = new System.Drawing.Size(158, 45);
+            this.raw_data.TabIndex = 8;
+            this.raw_data.Text = "Raw Data";
+            this.raw_data.UseVisualStyleBackColor = true;
+            this.raw_data.Click += new System.EventHandler(this.raw_data_Click);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(249, 23);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(58, 20);
+            this.label17.TabIndex = 31;
+            this.label17.Text = "Activity";
+            // 
+            // activity
+            // 
+            this.activity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.activity.FormattingEnabled = true;
+            this.activity.Location = new System.Drawing.Point(313, 23);
+            this.activity.Name = "activity";
+            this.activity.Size = new System.Drawing.Size(225, 28);
+            this.activity.TabIndex = 32;
+            // 
             // txt_RequestID
             // 
             this.txt_RequestID.DataPropertyName = "RequestID";
@@ -456,7 +543,16 @@
             this.txt_RequestID.MinimumWidth = 8;
             this.txt_RequestID.Name = "txt_RequestID";
             this.txt_RequestID.ReadOnly = true;
-            this.txt_RequestID.Width = 150;
+            this.txt_RequestID.Width = 75;
+            // 
+            // txt_Activity
+            // 
+            this.txt_Activity.DataPropertyName = "Activity";
+            this.txt_Activity.HeaderText = "Activity";
+            this.txt_Activity.MinimumWidth = 8;
+            this.txt_Activity.Name = "txt_Activity";
+            this.txt_Activity.ReadOnly = true;
+            this.txt_Activity.Width = 150;
             // 
             // txt_Vendor
             // 
@@ -584,69 +680,6 @@
             this.txt_LastUpdatedBy.ReadOnly = true;
             this.txt_LastUpdatedBy.Width = 150;
             // 
-            // searchby_requestid
-            // 
-            this.searchby_requestid.Location = new System.Drawing.Point(312, 425);
-            this.searchby_requestid.Name = "searchby_requestid";
-            this.searchby_requestid.Size = new System.Drawing.Size(203, 26);
-            this.searchby_requestid.TabIndex = 2;
-            this.searchby_requestid.TextChanged += new System.EventHandler(this.searchby_requestid_TextChanged);
-            // 
-            // searchby_entityname
-            // 
-            this.searchby_entityname.Location = new System.Drawing.Point(539, 425);
-            this.searchby_entityname.Name = "searchby_entityname";
-            this.searchby_entityname.Size = new System.Drawing.Size(309, 26);
-            this.searchby_entityname.TabIndex = 3;
-            this.searchby_entityname.TextChanged += new System.EventHandler(this.searchby_entityname_TextChanged);
-            // 
-            // searchby_associatename
-            // 
-            this.searchby_associatename.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.searchby_associatename.FormattingEnabled = true;
-            this.searchby_associatename.Location = new System.Drawing.Point(872, 425);
-            this.searchby_associatename.Name = "searchby_associatename";
-            this.searchby_associatename.Size = new System.Drawing.Size(246, 28);
-            this.searchby_associatename.TabIndex = 4;
-            this.searchby_associatename.SelectedIndexChanged += new System.EventHandler(this.searchby_associatename_SelectedIndexChanged);
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(331, 463);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(158, 20);
-            this.label14.TabIndex = 5;
-            this.label14.Text = "Searchby RequestID";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(603, 463);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(166, 20);
-            this.label15.TabIndex = 6;
-            this.label15.Text = "Searchby Entity Name";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(893, 463);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(196, 20);
-            this.label16.TabIndex = 7;
-            this.label16.Text = "Searchby Associate Name";
-            // 
-            // raw_data
-            // 
-            this.raw_data.Location = new System.Drawing.Point(34, 427);
-            this.raw_data.Name = "raw_data";
-            this.raw_data.Size = new System.Drawing.Size(158, 45);
-            this.raw_data.TabIndex = 8;
-            this.raw_data.Text = "Raw Data";
-            this.raw_data.UseVisualStyleBackColor = true;
-            this.raw_data.Click += new System.EventHandler(this.raw_data_Click);
-            // 
             // Issue_Log
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -716,7 +749,11 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Button raw_data;
+        private System.Windows.Forms.Button update_chaser_date;
+        private System.Windows.Forms.ComboBox activity;
+        private System.Windows.Forms.Label label17;
         private System.Windows.Forms.DataGridViewTextBoxColumn txt_RequestID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn txt_Activity;
         private System.Windows.Forms.DataGridViewTextBoxColumn txt_Vendor;
         private System.Windows.Forms.DataGridViewTextBoxColumn txt_Platform;
         private System.Windows.Forms.DataGridViewTextBoxColumn txt_Entity_Individual_Name;
@@ -731,6 +768,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn txt_Risk_Catetory;
         private System.Windows.Forms.DataGridViewTextBoxColumn txt_Priority_Level;
         private System.Windows.Forms.DataGridViewTextBoxColumn txt_LastUpdatedBy;
-        private System.Windows.Forms.Button update_chaser_date;
     }
 }

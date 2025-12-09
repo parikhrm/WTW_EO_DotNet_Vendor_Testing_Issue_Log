@@ -75,6 +75,36 @@ namespace Vendor_Testing_Issue_Log
             }
         }
 
+        public void activity_list(DataTable dta)
+        {
+            string connectionstringtxt = "Data Source=A20-CB-DBSE01P;Initial Catalog=DRD;User ID=DRDUsers;Password=24252425";
+            SqlCommand cmd = new SqlCommand();
+            SqlConnection conn = new SqlConnection();
+
+            if (conn.State == ConnectionState.Open)
+            {
+                conn.Close();
+            }
+            try
+            {
+                SqlDataAdapter sda = new SqlDataAdapter();
+                DataTable dt = new DataTable();
+                conn.ConnectionString = connectionstringtxt;
+                cmd.Connection = conn;
+                conn.Open();
+                cmd.Parameters.Clear();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "select * from dbo.tbl_vendor_testing_issuelog_activity_dotnet with(nolock) where IsDeleted = 0 order by Activity";
+                sda.SelectCommand = cmd;
+                dt = dta;
+                sda.Fill(dta);
+            }
+            catch (Exception ab)
+            {
+                MessageBox.Show("Error Generated Details : " + ab.ToString());
+            }
+        }
+
         public void associatename_list(DataTable dta)
         {
             string connectionstringtxt = "Data Source=A20-CB-DBSE01P;Initial Catalog=DRD;User ID=DRDUsers;Password=24252425";

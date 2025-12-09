@@ -36,6 +36,7 @@ namespace Vendor_Testing_Issue_Log
             associate_name_list();
             risk_category_list();
             priority_level_list();
+            activity_list();
             reset_overall();
 
         }
@@ -48,6 +49,7 @@ namespace Vendor_Testing_Issue_Log
             requestid.Enabled = false;
             vendor.SelectedIndex = -1;
             platform.SelectedIndex = -1;
+            activity.SelectedIndex = -1;
             entity_individual_name.Text = string.Empty;
             wft_batch_requestid.Text = string.Empty;
             issue_raised_date.CustomFormat = " ";
@@ -106,6 +108,29 @@ namespace Vendor_Testing_Issue_Log
                 vendor.DisplayMember = "Vendor";
                 conn.Close();
                 vendor.SelectedIndex = -1;
+            }
+            catch (Exception ab)
+            {
+                MessageBox.Show("Error Generated Details: " + ab.ToString());
+            }
+        }
+
+        public void activity_list()
+        {
+            if (conn.State == ConnectionState.Open)
+            {
+                conn.Close();
+            }
+
+            try
+            {
+                DropDown_References obj_activity = new DropDown_References();
+                DataTable dtaa = new DataTable();
+                obj_activity.activity_list(dtaa);
+                activity.DataSource = dtaa;
+                activity.DisplayMember = "Activity";
+                conn.Close();
+                activity.SelectedIndex = -1;
             }
             catch (Exception ab)
             {
@@ -228,6 +253,14 @@ namespace Vendor_Testing_Issue_Log
                 {
                     cmd.Parameters.AddWithValue("@Vendor", vendor.Text);
                 }
+                if(string.IsNullOrEmpty(activity.Text))
+                {
+                    cmd.Parameters.AddWithValue("@Activity",DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Activity", activity.Text);
+                }
                 if (string.IsNullOrEmpty(platform.Text))
                 {
                     cmd.Parameters.AddWithValue("@Platform", DBNull.Value);
@@ -335,6 +368,10 @@ namespace Vendor_Testing_Issue_Log
                 {
                     MessageBox.Show("Please update Moodys DNB Comments");
                 }
+                else if(string.IsNullOrEmpty(activity.Text))
+                {
+                    MessageBox.Show("Please update Activity");
+                }
                 else if (vendor.Text == "Moodys" && string.IsNullOrEmpty(platform.Text))
                 {
                     MessageBox.Show("Please update Platform");
@@ -417,6 +454,14 @@ namespace Vendor_Testing_Issue_Log
                 else
                 {
                     cmd.Parameters.AddWithValue("@Vendor", vendor.Text);
+                }
+                if (string.IsNullOrEmpty(activity.Text))
+                {
+                    cmd.Parameters.AddWithValue("@Activity", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Activity", activity.Text);
                 }
                 if (string.IsNullOrEmpty(platform.Text))
                 {
@@ -527,6 +572,10 @@ namespace Vendor_Testing_Issue_Log
                 {
                     MessageBox.Show("Please update Moodys DNB Comments");
                 }
+                else if(string.IsNullOrEmpty(activity.Text))
+                {
+                    MessageBox.Show("Please update Activity");
+                }
                 else if (vendor.Text == "Moodys" && string.IsNullOrEmpty(platform.Text))
                 {
                     MessageBox.Show("Please update Platform");
@@ -604,7 +653,7 @@ namespace Vendor_Testing_Issue_Log
                 if (string.IsNullOrEmpty(searchby_requestid.Text) && string.IsNullOrEmpty(searchby_entityname.Text) && string.IsNullOrEmpty(searchby_associatename.Text))
                 {
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "select top 100 RequestID,Vendor,Platform,Entity_Individual_Name,WFT_Batch_RequestID,Issue_Raised_Date,Chaser_Date,case when Chaser_Date_Editable = 0 then null else Chaser_Date_Editable end as Chaser_Date_Editable ,Issue_Resolved_Date,Associate_Name,Ops_Comments,Moodys_DNB_Comments,Risk_Catetory,Priority_Level,LastUpdatedBy from dbo.tbl_vendor_testing_issuelog_dotnet with(nolock) where IsDeleted = 0";
+                    cmd.CommandText = "select top 100 RequestID,Activity,Vendor,Platform,Entity_Individual_Name,WFT_Batch_RequestID,Issue_Raised_Date,Chaser_Date,case when Chaser_Date_Editable = 0 then null else Chaser_Date_Editable end as Chaser_Date_Editable ,Issue_Resolved_Date,Associate_Name,Ops_Comments,Moodys_DNB_Comments,Risk_Catetory,Priority_Level,LastUpdatedBy from dbo.tbl_vendor_testing_issuelog_dotnet with(nolock) where IsDeleted = 0";
                     cmd.Parameters.AddWithValue("@lastupdatedby", Environment.UserName.ToString());
                 }
                 else
@@ -660,6 +709,14 @@ namespace Vendor_Testing_Issue_Log
                 {
                     DataGridViewRow row = this.dataGridView1.Rows[e.RowIndex];
                     requestid.Text = row.Cells["txt_RequestID"].Value.ToString();
+                    if (string.IsNullOrEmpty(row.Cells["txt_Activity"].Value.ToString()))
+                    {
+                        activity.SelectedIndex = -1;
+                    }
+                    else
+                    {
+                        activity.Text = row.Cells["txt_Activity"].Value.ToString();
+                    }
                     if (string.IsNullOrEmpty(row.Cells["txt_Vendor"].Value.ToString()))
                     {
                         vendor.SelectedIndex = -1;
