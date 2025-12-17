@@ -37,6 +37,9 @@ namespace Vendor_Testing_Issue_Log
             risk_category_list();
             priority_level_list();
             activity_list();
+            event_category_list();
+            sub_category_list();
+            ageing_of_test_status_list();
             reset_overall();
 
         }
@@ -63,7 +66,65 @@ namespace Vendor_Testing_Issue_Log
             insert.Enabled = true;
             update.Enabled = false;
             chaser_date.Enabled = false;
+            event_category.SelectedIndex = -1;
+            sub_category.SelectedIndex = -1;
+            sanctioned_date.CustomFormat = " ";
+            screening_testing_date.CustomFormat = " ";
+            ageing_of_test_status.SelectedIndex = -1;
+            batchid.Text = string.Empty;
+            beyound_48_batchid.Text = string.Empty;
+            eo_remarks.Text = string.Empty;
             datagridview_display_overall();
+        }
+
+        public void hide_unhide_columns()
+        {
+            if(activity.Text == "Vendor Testing")
+            {
+                label_Event_Category.Visible = true;
+                event_category.Visible = true;
+                event_category.SelectedIndex = -1;
+                label_Sub_Category.Visible = true;
+                sub_category.Visible = true;
+                sub_category.SelectedIndex = -1;
+                label_Sanctioned_Date.Visible = true;
+                sanctioned_date.Visible = true;
+                sanctioned_date.CustomFormat= " ";
+                label_Screening_Testing_Date.Visible = true;
+                screening_testing_date.Visible = true;
+                screening_testing_date.CustomFormat = " ";
+                label_Ageing_Of_Test_Status.Visible = true;
+                ageing_of_test_status.Visible = true;
+                ageing_of_test_status.SelectedIndex = -1;
+                label_BatchID.Visible = true;
+                batchid.Visible = true;
+                batchid.Text = string.Empty;
+                label_Beyound_48_BatchID.Visible = true;
+                beyound_48_batchid.Visible = true;
+                beyound_48_batchid.Text = string.Empty;
+                label_EO_Remarks.Visible = true;
+                eo_remarks.Visible = true;
+                eo_remarks.Text = string.Empty;
+            }
+            else
+            {
+                label_Event_Category.Visible = false;
+                event_category.Visible = false;
+                label_Sub_Category.Visible = false;
+                sub_category.Visible = false;
+                label_Sanctioned_Date.Visible = false;
+                sanctioned_date.Visible = false;
+                label_Screening_Testing_Date.Visible = false;
+                screening_testing_date.Visible = false;
+                label_Ageing_Of_Test_Status.Visible = false;
+                ageing_of_test_status.Visible = false;
+                label_BatchID.Visible = false;
+                batchid.Visible = false;
+                label_Beyound_48_BatchID.Visible = false;
+                beyound_48_batchid.Visible = false;
+                label_EO_Remarks.Visible = false;
+                eo_remarks.Visible = false;
+            }
         }
 
         private void issue_raised_date_ValueChanged(object sender, EventArgs e)
@@ -108,6 +169,75 @@ namespace Vendor_Testing_Issue_Log
                 vendor.DisplayMember = "Vendor";
                 conn.Close();
                 vendor.SelectedIndex = -1;
+            }
+            catch (Exception ab)
+            {
+                MessageBox.Show("Error Generated Details: " + ab.ToString());
+            }
+        }
+
+        public void ageing_of_test_status_list()
+        {
+            if (conn.State == ConnectionState.Open)
+            {
+                conn.Close();
+            }
+
+            try
+            {
+                DropDown_References obj_ageing_of_test_status = new DropDown_References();
+                DataTable dtaa = new DataTable();
+                obj_ageing_of_test_status.ageing_of_test_status_list(dtaa);
+                ageing_of_test_status.DataSource = dtaa;
+                ageing_of_test_status.DisplayMember = "Ageing_Of_Test_Status";
+                conn.Close();
+                ageing_of_test_status.SelectedIndex = -1;
+            }
+            catch (Exception ab)
+            {
+                MessageBox.Show("Error Generated Details: " + ab.ToString());
+            }
+        }
+
+        public void event_category_list()
+        {
+            if (conn.State == ConnectionState.Open)
+            {
+                conn.Close();
+            }
+
+            try
+            {
+                DropDown_References obj_event_category = new DropDown_References();
+                DataTable dtaa = new DataTable();
+                obj_event_category.event_category_list(dtaa);
+                event_category.DataSource = dtaa;
+                event_category.DisplayMember = "Event_Category";
+                conn.Close();
+                event_category.SelectedIndex = -1;
+            }
+            catch (Exception ab)
+            {
+                MessageBox.Show("Error Generated Details: " + ab.ToString());
+            }
+        }
+
+        public void sub_category_list()
+        {
+            if (conn.State == ConnectionState.Open)
+            {
+                conn.Close();
+            }
+
+            try
+            {
+                DropDown_References obj_sub_category = new DropDown_References();
+                DataTable dtaa = new DataTable();
+                obj_sub_category.sub_category_list(dtaa);
+                sub_category.DataSource = dtaa;
+                sub_category.DisplayMember = "Sub_Category";
+                conn.Close();
+                sub_category.SelectedIndex = -1;
             }
             catch (Exception ab)
             {
@@ -361,6 +491,70 @@ namespace Vendor_Testing_Issue_Log
                 }
                 cmd.Parameters.AddWithValue("@LastUpdatedBy", Environment.UserName.ToString());
                 cmd.Parameters.AddWithValue("@MachineName", Environment.MachineName.ToString());
+                if(string.IsNullOrEmpty(event_category.Text))
+                {
+                    cmd.Parameters.AddWithValue("@Event_Category",DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Event_Category", event_category.Text);
+                }
+                if(string.IsNullOrEmpty(sub_category.Text))
+                {
+                    cmd.Parameters.AddWithValue("@Sub_Category", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Sub_Category", sub_category.Text);
+                }
+                if (sanctioned_date.Text.Trim() == string.Empty)
+                {
+                    cmd.Parameters.AddWithValue("@Sanctioned_Date",DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Sanctioned_Date", sanctioned_date.Value.Date);
+                }
+                if(screening_testing_date.Text.Trim() == string.Empty)
+                {
+                    cmd.Parameters.AddWithValue("@Screening_Testing_Date",DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Screening_Testing_Date",screening_testing_date.Value.Date);
+                }
+                if(string.IsNullOrEmpty(ageing_of_test_status.Text))
+                {
+                    cmd.Parameters.AddWithValue("@Ageing_Of_Test_Status",DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Ageing_Of_Test_Status", ageing_of_test_status.Text);
+                }
+                if(string.IsNullOrEmpty(batchid.Text))
+                {
+                    cmd.Parameters.AddWithValue("@BatchID",DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@BatchID", batchid.Text);
+                }
+                if (string.IsNullOrEmpty(beyound_48_batchid.Text))
+                {
+                    cmd.Parameters.AddWithValue("@Beyound_48hrs_BatchID", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Beyound_48hrs_BatchID", beyound_48_batchid.Text);
+                }
+                if (string.IsNullOrEmpty(eo_remarks.Text))
+                {
+                    cmd.Parameters.AddWithValue("@EO_Remarks", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@EO_Remarks", eo_remarks.Text);
+                }
 
 
                 //if conditions
@@ -368,7 +562,7 @@ namespace Vendor_Testing_Issue_Log
                 {
                     MessageBox.Show("Please update Moodys DNB Comments");
                 }
-                else if(string.IsNullOrEmpty(activity.Text))
+                else if (string.IsNullOrEmpty(activity.Text))
                 {
                     MessageBox.Show("Please update Activity");
                 }
@@ -411,6 +605,14 @@ namespace Vendor_Testing_Issue_Log
                 else if (issue_resolved_date.Text.Trim() != string.Empty && issue_raised_date.Value.Date > current_datetime.Value.Date)
                 {
                     MessageBox.Show("Issue Resolved Date cannot be more than Today's date");
+                }
+                else if (sanctioned_date.Text.Trim() != string.Empty && sanctioned_date.Value.Date > current_datetime.Value.Date)
+                {
+                    MessageBox.Show("Sanctioned Date cannot be more than Today's date");
+                }
+                else if (screening_testing_date.Text.Trim() != string.Empty && screening_testing_date.Value.Date > current_datetime.Value.Date)
+                {
+                    MessageBox.Show("Screening/Testing Date cannot be more than Today's date");
                 }
                 else
                 {
@@ -565,6 +767,70 @@ namespace Vendor_Testing_Issue_Log
                 }
                 cmd.Parameters.AddWithValue("@LastUpdatedBy", Environment.UserName.ToString());
                 cmd.Parameters.AddWithValue("@MachineName", Environment.MachineName.ToString());
+                if (string.IsNullOrEmpty(event_category.Text))
+                {
+                    cmd.Parameters.AddWithValue("@Event_Category", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Event_Category", event_category.Text);
+                }
+                if (string.IsNullOrEmpty(sub_category.Text))
+                {
+                    cmd.Parameters.AddWithValue("@Sub_Category", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Sub_Category", sub_category.Text);
+                }
+                if (sanctioned_date.Text.Trim() == string.Empty)
+                {
+                    cmd.Parameters.AddWithValue("@Sanctioned_Date", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Sanctioned_Date", sanctioned_date.Value.Date);
+                }
+                if (screening_testing_date.Text.Trim() == string.Empty)
+                {
+                    cmd.Parameters.AddWithValue("@Screening_Testing_Date", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Screening_Testing_Date", screening_testing_date.Value.Date);
+                }
+                if (string.IsNullOrEmpty(ageing_of_test_status.Text))
+                {
+                    cmd.Parameters.AddWithValue("@Ageing_Of_Test_Status", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Ageing_Of_Test_Status", ageing_of_test_status.Text);
+                }
+                if (string.IsNullOrEmpty(batchid.Text))
+                {
+                    cmd.Parameters.AddWithValue("@BatchID", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@BatchID", batchid.Text);
+                }
+                if (string.IsNullOrEmpty(beyound_48_batchid.Text))
+                {
+                    cmd.Parameters.AddWithValue("@Beyound_48hrs_BatchID", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Beyound_48hrs_BatchID", beyound_48_batchid.Text);
+                }
+                if (string.IsNullOrEmpty(eo_remarks.Text))
+                {
+                    cmd.Parameters.AddWithValue("@EO_Remarks", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@EO_Remarks", eo_remarks.Text);
+                }
 
 
                 //if conditions
@@ -616,6 +882,15 @@ namespace Vendor_Testing_Issue_Log
                 {
                     MessageBox.Show("Issue Resolved Date cannot be more than Today's date");
                 }
+                else if (sanctioned_date.Text.Trim() != string.Empty && sanctioned_date.Value.Date > current_datetime.Value.Date)
+                {
+                    MessageBox.Show("Sanctioned Date cannot be more than Today's date");
+                }
+                else if (screening_testing_date.Text.Trim() != string.Empty && screening_testing_date.Value.Date > current_datetime.Value.Date)
+                {
+                    MessageBox.Show("Screening/Testing Date cannot be more than Today's date");
+                }
+
                 else
                 {
 
@@ -653,7 +928,7 @@ namespace Vendor_Testing_Issue_Log
                 if (string.IsNullOrEmpty(searchby_requestid.Text) && string.IsNullOrEmpty(searchby_entityname.Text) && string.IsNullOrEmpty(searchby_associatename.Text))
                 {
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "select top 100 RequestID,Activity,Vendor,Platform,Entity_Individual_Name,WFT_Batch_RequestID,Issue_Raised_Date,Chaser_Date,case when Chaser_Date_Editable = 0 then null else Chaser_Date_Editable end as Chaser_Date_Editable ,Issue_Resolved_Date,Associate_Name,Ops_Comments,Moodys_DNB_Comments,Risk_Catetory,Priority_Level,LastUpdatedBy from dbo.tbl_vendor_testing_issuelog_dotnet with(nolock) where IsDeleted = 0";
+                    cmd.CommandText = "select top 100 RequestID,Activity,Vendor,Platform,Entity_Individual_Name,WFT_Batch_RequestID,Issue_Raised_Date,Chaser_Date,case when Chaser_Date_Editable = 0 then null else Chaser_Date_Editable end as Chaser_Date_Editable ,Issue_Resolved_Date,Associate_Name,Ops_Comments,Moodys_DNB_Comments,Risk_Catetory,Priority_Level,LastUpdatedBy,Event_Category,Sub_Category,Sanctioned_Date,Screening_Testing_Date,Ageing_Of_Test_Status,BatchID,Beyound_48hrs_BatchID,EO_Remarks from dbo.tbl_vendor_testing_issuelog_dotnet with(nolock) where IsDeleted = 0";
                     cmd.Parameters.AddWithValue("@lastupdatedby", Environment.UserName.ToString());
                 }
                 else
@@ -826,6 +1101,64 @@ namespace Vendor_Testing_Issue_Log
                     {
                         priority_level.Text = row.Cells["txt_Priority_Level"].Value.ToString();
                     }
+                    if(string.IsNullOrEmpty(row.Cells["txt_Event_Category"].Value.ToString()))
+                    {
+                        event_category.SelectedIndex = -1;
+                    }
+                    else
+                    {
+                        event_category.Text = row.Cells["txt_Event_Category"].Value.ToString();
+                    }
+                    if (string.IsNullOrEmpty(row.Cells["txt_Sub_Category"].Value.ToString()))
+                    {
+                        sub_category.SelectedIndex = -1;
+                    }
+                    else
+                    {
+                        sub_category.Text = row.Cells["txt_Sub_Category"].Value.ToString();
+                    }
+                    if (string.IsNullOrEmpty(row.Cells["txt_Sanctioned_Date"].Value.ToString()))
+                    {
+                        sanctioned_date.CustomFormat = " ";
+                    }
+                    else
+                    {
+                        sanctioned_date.Text = row.Cells["txt_Sanctioned_Date"].Value.ToString();
+                        sanctioned_date.CustomFormat = "dd-MMMM-yyyy";
+                    }
+                    if (string.IsNullOrEmpty(row.Cells["txt_Screening_Testing_Date"].Value.ToString()))
+                    {
+                        screening_testing_date.CustomFormat = " ";
+                    }
+                    else
+                    {
+                        screening_testing_date.Text = row.Cells["txt_Screening_Testing_Date"].Value.ToString();
+                        screening_testing_date.CustomFormat = "dd-MMMM-yyyy";
+                    }
+                    if (string.IsNullOrEmpty(row.Cells["txt_Ageing_Of_Test_Status"].Value.ToString()))
+                    {
+                        ageing_of_test_status.SelectedIndex = -1;
+                    }
+                    else
+                    {
+                        ageing_of_test_status.Text = row.Cells["txt_Ageing_Of_Test_Status"].Value.ToString();
+                    }
+                    if (string.IsNullOrEmpty(row.Cells["txt_BatchID"].Value.ToString()))
+                    {
+                        batchid.Text = string.Empty;
+                    }
+                    else
+                    {
+                        batchid.Text = row.Cells["txt_BatchID"].Value.ToString();
+                    }
+                    if (string.IsNullOrEmpty(row.Cells["txt_Beyound_48hrs_BatchID"].Value.ToString()))
+                    {
+                        beyound_48_batchid.Text = string.Empty;
+                    }
+                    else
+                    {
+                        beyound_48_batchid.Text = row.Cells["txt_Beyound_48hrs_BatchID"].Value.ToString();
+                    }
                 }
                 insert.Enabled = false;
                 update.Enabled = true;
@@ -931,6 +1264,53 @@ namespace Vendor_Testing_Issue_Log
             if (e.KeyCode == Keys.Escape || e.KeyCode == Keys.Delete || e.KeyCode == Keys.Space || e.KeyCode == Keys.Back)
             {
                 chaser_date.CustomFormat = " ";
+            }
+        }
+
+        private void sanctioned_date_ValueChanged(object sender, EventArgs e)
+        {
+            sanctioned_date.CustomFormat = "dd-MMMM-yyyy";
+        }
+
+        private void sanctioned_date_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape || e.KeyCode == Keys.Delete || e.KeyCode == Keys.Space || e.KeyCode == Keys.Back)
+            {
+                sanctioned_date.CustomFormat = " ";
+            }
+        }
+
+        private void screening_testing_date_ValueChanged(object sender, EventArgs e)
+        {
+            screening_testing_date.CustomFormat = "dd-MMMM-yyyy";
+        }
+
+        private void screening_testing_date_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape || e.KeyCode == Keys.Delete || e.KeyCode == Keys.Space || e.KeyCode == Keys.Back)
+            {
+                screening_testing_date.CustomFormat = " ";
+            }
+        }
+
+        private void event_category_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape || e.KeyCode == Keys.Delete || e.KeyCode == Keys.Space || e.KeyCode == Keys.Back)
+            {
+                event_category.SelectedIndex = -1;
+            }
+        }
+
+        private void activity_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            hide_unhide_columns();
+        }
+
+        private void sub_category_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape || e.KeyCode == Keys.Delete || e.KeyCode == Keys.Space || e.KeyCode == Keys.Back)
+            {
+                sub_category.SelectedIndex = -1;
             }
         }
     }   
