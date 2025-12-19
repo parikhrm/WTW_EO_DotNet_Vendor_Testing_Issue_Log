@@ -124,7 +124,7 @@ namespace Vendor_Testing_Issue_Log
                 conn.Open();
                 cmd.Parameters.Clear();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select * from dbo.tbl_emp_details with(nolock) where IsDeleted = 0 and Process not in ('MI','Management') and empname not in ('Others','Rinkesh Parikh ADM') order by EmpName";
+                cmd.CommandText = "select * from dbo.tbl_emp_details with(nolock) where IsDeleted = 0  and empname not in ('Others','Rinkesh Parikh ADM') order by EmpName";
                 sda.SelectCommand = cmd;
                 dt = dta;
                 sda.Fill(dta);
